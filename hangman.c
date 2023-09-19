@@ -7,7 +7,7 @@
 #define MAX_WORD_COUNT 1000
 #define MAX_LINE_LENGTH 1000
 
-char HANGMAN_FRAMES[7][256] = {"\n  +---+\n  |   |\n      |\n      |\n      |\n      |\n=========\n\n", "\n  +---+\n  |   |\n  O   |\n      |\n      |\n      |\n=========\n\n", "\n  +---+\n  |   |\n  O   |\n  |   |\n      |\n      |\n=========\n\n", "\n  +---+\n  |   |\n  O   |\n /|   |\n      |\n      |\n=========\n\n", "\n  +---+\n  |   |\n  O   |\n /|\\  |\n      |\n      |\n=========\n\n", "\n  +---+\n  |   |\n  O   |\n /|\\  |\n /    |\n      |\n=========\n\n", "\n  +---+\n  |   |\n  O   |\n /|\\  |\n / \\  |\n      |\n=========\n\n"};
+const char HANGMAN_FRAMES[7][256] = {"\n  +---+\n  |   |\n      |\n      |\n      |\n      |\n=========\n\n", "\n  +---+\n  |   |\n  O   |\n      |\n      |\n      |\n=========\n\n", "\n  +---+\n  |   |\n  O   |\n  |   |\n      |\n      |\n=========\n\n", "\n  +---+\n  |   |\n  O   |\n /|   |\n      |\n      |\n=========\n\n", "\n  +---+\n  |   |\n  O   |\n /|\\  |\n      |\n      |\n=========\n\n", "\n  +---+\n  |   |\n  O   |\n /|\\  |\n /    |\n      |\n=========\n\n", "\n  +---+\n  |   |\n  O   |\n /|\\  |\n / \\  |\n      |\n=========\n\n"};
 
 int characterGuess(char guess, char *word, char *show, int size)
 {
@@ -74,8 +74,7 @@ int main()
             {
                 printf("%s", HANGMAN_FRAMES[6]);
                 printf("Look what you've done...\n");
-                printf(name);
-                printf(" is dead because of you :(\n");
+                printf("%s is dead because of you :(\n", name);
                 printf("The word was: %s\n", word);
                 return 0;
             }
