@@ -45,13 +45,14 @@ int main()
 
     int remaining = size;
 
+    system("cls");
+    char guess;
+    printf("Enter your guess:\n");
+    scanf(" %c", &guess);
+    system("cls");
+
     while (remaining > 0)
     {
-        char guess;
-        system("cls");
-        printf("Enter your guess:\n");
-        scanf(" %c", &guess);
-
         int found = characterGuess(guess, word, show, size);
         remaining -= found;
 
@@ -62,16 +63,18 @@ int main()
             if (frame == 5)
             {
                 printf("%s", HANGMAN_FRAMES[6]);
-                printf("Oh no! You're a murderer!");
+                printf("Oh no! You're a murderer!\n");
+                printf("The word was: %s", word);
                 return 0;
             }
 
             frame++;
             printf("%s", HANGMAN_FRAMES[frame]);
             printf("Current word: %s\n", show);
-            printf("Press enter to continue:\n");
-            char enter = 0;
-            scanf("%*c%c", &enter);
+
+            printf("Try another character:\n");
+            scanf("%*c%c", &guess);
+            system("cls");
         }
         else
         {
@@ -87,9 +90,9 @@ int main()
 
             printf("Current word: %s\n", show);
 
-            printf("Press enter to continue:\n");
-            char enter = 0;
-            scanf("%*c%c", &enter);
+            printf("Try another character:\n");
+            scanf("%*c%c", &guess);
+            system("cls");
         }
     }
 
