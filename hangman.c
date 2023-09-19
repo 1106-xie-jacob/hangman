@@ -7,7 +7,7 @@
 #define MAX_WORD_COUNT 1000
 #define MAX_LINE_LENGTH 1000
 
-char HANGMAN_FRAMES[7][256] = {"  +---+\n  |   |\n      |\n      |\n      |\n      |\n=========\n", "  +---+\n  |   |\n  O   |\n      |\n      |\n      |\n=========\n", "  +---+\n  |   |\n  O   |\n  |   |\n      |\n      |\n=========\n", "\n  +---+\n  |   |\n  O   |\n /|   |\n      |\n      |\n=========\n", "\n  +---+\n  |   |\n  O   |\n /|\\  |\n      |\n      |\n=========\n", "\n  +---+\n  |   |\n  O   |\n /|\\  |\n /    |\n      |\n=========\n", "\n  +---+\n  |   |\n  O   |\n /|\\  |\n / \\  |\n      |\n=========\n"};
+char HANGMAN_FRAMES[7][256] = {"\n  +---+\n  |   |\n      |\n      |\n      |\n      |\n=========\n\n", "\n  +---+\n  |   |\n  O   |\n      |\n      |\n      |\n=========\n\n", "\n  +---+\n  |   |\n  O   |\n  |   |\n      |\n      |\n=========\n\n", "\n  +---+\n  |   |\n  O   |\n /|   |\n      |\n      |\n=========\n\n", "\n  +---+\n  |   |\n  O   |\n /|\\  |\n      |\n      |\n=========\n\n", "\n  +---+\n  |   |\n  O   |\n /|\\  |\n /    |\n      |\n=========\n\n", "\n  +---+\n  |   |\n  O   |\n /|\\  |\n / \\  |\n      |\n=========\n\n"};
 
 int characterGuess(char guess, char *word, char *show, int size)
 {
@@ -46,6 +46,16 @@ int main()
     int remaining = size;
 
     system("cls");
+    printf("Hello there! Let's play a game of hangman\n");
+    printf("First of all, let's give hangman a name.\n");
+    printf("Enter a name: ");
+    char name[64];
+    scanf("%63s", &name);
+    printf("%s is such a good name! Let's hope you don't kill them.\n", name);
+    printf("Press enter to start!\n");
+    scanf("%*c%*c");
+
+    system("cls");
     char guess;
     printf("Enter your guess:\n");
     scanf(" %c", &guess);
@@ -63,8 +73,10 @@ int main()
             if (frame == 5)
             {
                 printf("%s", HANGMAN_FRAMES[6]);
-                printf("Oh no! You're a murderer!\n");
-                printf("The word was: %s", word);
+                printf("Look what you've done...\n");
+                printf(name);
+                printf(" is dead because of you :(\n");
+                printf("The word was: %s\n", word);
                 return 0;
             }
 
@@ -83,7 +95,8 @@ int main()
 
             if (remaining == 0)
             {
-                printf("Good job! The word was: %s\n", show);
+                printf("Good job! %s is still alive thanks to you\n", name);
+                printf("The word was: %s\n", show);
 
                 return 0;
             }
