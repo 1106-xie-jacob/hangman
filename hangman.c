@@ -33,7 +33,7 @@ int characterGuess(char guess, char *word, char *show, int size)
 
 int main()
 {
-    char word[] = "testing";
+    char word[] = "husky";
     int size = sizeof(word) / sizeof(word[0]) - 1;
     char show[size + 1];
     int frame = 0;
@@ -68,7 +68,7 @@ int main()
 
         if (found == 0)
         {
-            printf("Couldn't find that character!\n");
+            printf("Couldn't find character '%c' in the word!\n", guess);
 
             if (frame == 5)
             {
