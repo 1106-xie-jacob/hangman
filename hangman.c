@@ -1,11 +1,17 @@
 // Author: Jacob Xie
 // Section: 1010
+// Fun game of hangman!
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+#include <time.h>
 
 #define MAX_WORD_COUNT 1000
-#define MAX_LINE_LENGTH 1000
+#define MAX_LINE_LENGTH 256
+#define MAX_WORD_LENGTH 128
+
+#define ARR_SIZE(arr) ( sizeof((arr)) / sizeof((arr[0])) )
 
 const char HANGMAN_FRAMES[7][256] = {"\n  +---+\n  |   |\n      |\n      |\n      |\n      |\n=========\n\n", "\n  +---+\n  |   |\n  O   |\n      |\n      |\n      |\n=========\n\n", "\n  +---+\n  |   |\n  O   |\n  |   |\n      |\n      |\n=========\n\n", "\n  +---+\n  |   |\n  O   |\n /|   |\n      |\n      |\n=========\n\n", "\n  +---+\n  |   |\n  O   |\n /|\\  |\n      |\n      |\n=========\n\n", "\n  +---+\n  |   |\n  O   |\n /|\\  |\n /    |\n      |\n=========\n\n", "\n  +---+\n  |   |\n  O   |\n /|\\  |\n / \\  |\n      |\n=========\n\n"};
 
@@ -33,12 +39,36 @@ int characterGuess(char guess, char *word, char *show, int size)
 
 int main()
 {
-    char word[] = "husky";
-    int size = sizeof(word) / sizeof(word[0]) - 1;
+    FILE *fp;
+    fp = fopen("words.txt", "r");
+    if (fp == NULL)
+    {
+        perror("Error opening file");
+        return (-1);
+    }
+
+    char* words[MAX_WORD_COUNT];
+    char buffer[MAX_LINE_LENGTH];
+    int index = 0;
+    while (index < MAX_WORD_COUNT && fgets(buffer, MAX_LINE_LENGTH, fp) != NULL)
+    {
+        words[index] = strdup(buffer);
+        index++;
+    }
+
+    fclose(fp);
+
+    char word[MAX_WORD_LENGTH];
+    srand(time(NULL));
+    strcpy(word, words[rand() % index]);
+
+    int size = strlen(word) - 1; // Subract one to remove the new-line byte
     char show[size + 1];
+    memset(show, '\0', size + 1);
+
     int frame = 0;
 
-    for (int i = 0; i < size; i++)
+    for (int i = 0 ; i < size ; i++)
     {
         show[i] = '_';
     }
