@@ -15,27 +15,7 @@
 
 const char HANGMAN_FRAMES[7][256] = {"\n  +---+\n  |   |\n      |\n      |\n      |\n      |\n=========\n\n", "\n  +---+\n  |   |\n  O   |\n      |\n      |\n      |\n=========\n\n", "\n  +---+\n  |   |\n  O   |\n  |   |\n      |\n      |\n=========\n\n", "\n  +---+\n  |   |\n  O   |\n /|   |\n      |\n      |\n=========\n\n", "\n  +---+\n  |   |\n  O   |\n /|\\  |\n      |\n      |\n=========\n\n", "\n  +---+\n  |   |\n  O   |\n /|\\  |\n /    |\n      |\n=========\n\n", "\n  +---+\n  |   |\n  O   |\n /|\\  |\n / \\  |\n      |\n=========\n\n"};
 
-int characterGuess(char guess, char *word, char *show, int size)
-{
-    int change = 0;
-    for (int i = 0; i < size; i++)
-    {
-        if (show[i] == '_')
-        {
-            if (word[i] == guess)
-            {
-                show[i] = guess;
-                change++;
-            }
-            else
-            {
-                show[i] = '_';
-            }
-        }
-    }
-
-    return change;
-}
+int characterGuess(char guess, char *word, char *show, int size);
 
 int main()
 {
@@ -139,4 +119,26 @@ int main()
     }
 
     return 0;
+}
+
+int characterGuess(char guess, char *word, char *show, int size)
+{
+    int change = 0;
+    for (int i = 0; i < size; i++)
+    {
+        if (show[i] == '_')
+        {
+            if (word[i] == guess)
+            {
+                show[i] = guess;
+                change++;
+            }
+            else
+            {
+                show[i] = '_';
+            }
+        }
+    }
+
+    return change;
 }
