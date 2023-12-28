@@ -118,6 +118,8 @@ int main()
         }
     }
 
+    free(words);
+
     return 0;
 }
 
